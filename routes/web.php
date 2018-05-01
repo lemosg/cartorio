@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::group(['prefix' => 'admin'], function() {
+	Route::post('/convert-table', 'AdminController@convertTable')->name('admin.convert');
+
+	Route::get('/panel', 'AdminController@panel')->name('admin.panel');
+});
