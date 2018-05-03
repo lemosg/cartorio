@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUfs extends Migration {
+class CreateTableCertidaoTypes extends Migration {
     /**
      * Run the migrations.
      *

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUfs extends Migration {
+class CreateTableCartorio extends Migration {
     /**
      * Run the migrations.
      *
@@ -16,14 +16,16 @@ class CreateTableUfs extends Migration {
             $table->string('nome_fantasia');
             $table->string('comarca');
             $table->string('entrancia');
-            $table->string('cnpj');
+            $table->string('cnpj')->unique();
             $table->string('cns')->nullable();
             
             $table->string('endereco');
             $table->string('bairro');
-            $table->integer('municipio_id');
+            $table->integer('municipio_id')->unsigned();
+            $table->index('municipio_id');
             $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete('restrict')->onUpdate('cascade');
-            $table->integer('uf_id');
+            $table->integer('uf_id')->unsigned();
+            $table->index('uf_id');
             $table->foreign('uf_id')->references('id')->on('ufs')->onDelete('restrict')->onUpdate('cascade');
             $table->string('cep')->nullable();
 
