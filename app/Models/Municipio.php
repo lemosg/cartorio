@@ -15,4 +15,8 @@ class Municipio extends Model {
 		return $this->belongsTo('App\Models\Uf');
 	}
 
+
+	public function cartorios() {
+		return $this->hasMany('App\Models\Cartorio');
+	}
 }

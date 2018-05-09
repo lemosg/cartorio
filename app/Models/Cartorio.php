@@ -41,7 +41,11 @@ class Cartorio extends Model {
 	}
 
 	public function certidoes() {
-		return $this->belongsToMany('App\Models\CertidaoType', 'certidoes', 'cartorio_id', 'id', 'certidao_type_id');
+		return $this->belongsToMany('App\Models\CertidaoType', 'certidoes', 'cartorio_id', 'certidao_type_id', 'id');
+	}
+
+	public function certidoes_rel() {
+		return $this->hasMany('App\Models\Certidoe');
 	}
 
 }

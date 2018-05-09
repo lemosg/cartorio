@@ -12,23 +12,25 @@ class CreateTableCartorio extends Migration {
     public function up() {
         Schema::create('cartorios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome_oficial');
-            $table->string('nome_fantasia');
+            $table->text('nome_oficial');
+            $table->text('nome_fantasia');
             $table->string('comarca');
             $table->string('entrancia');
             $table->string('cnpj')->unique();
             $table->string('cns')->nullable();
             
-            $table->string('endereco');
-            $table->string('bairro');
+            $table->text('endereco');
+            $table->text('bairro');
+            
             $table->integer('municipio_id')->unsigned();
             $table->index('municipio_id');
             $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete('restrict')->onUpdate('cascade');
+            
             $table->integer('uf_id')->unsigned();
             $table->index('uf_id');
             $table->foreign('uf_id')->references('id')->on('ufs')->onDelete('restrict')->onUpdate('cascade');
+            
             $table->string('cep')->nullable();
-
             $table->string('nome_titular')->nullable();
             $table->string('nome_substituto')->nullable();
             $table->string('nome_juiz')->nullable();
@@ -36,11 +38,11 @@ class CreateTableCartorio extends Migration {
             $table->string('email')->nullable();
             $table->string('telefone')->nullable();
             $table->string('fax')->nullable();
-            $table->string('horario_funcionamento')->nullable();
-            $table->string('area_abrangencia')->nullable();
+            $table->longText('horario_funcionamento')->nullable();
+            $table->longText('area_abrangencia')->nullable();
 
-            $table->string('atriuicoes')->nullable();
-            $table->string('observacao')->nullable();
+            $table->longText('atriuicoes')->nullable();
+            $table->longText('observacao')->nullable();
 
             $table->date('data_instalacao');
             $table->date('ultima_atualizacao');

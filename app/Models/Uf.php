@@ -14,4 +14,12 @@ class Uf extends Model {
 		return $this->hasMany('App\Models\Municipio');
 	}
 
+	public function cartorios() {
+		return $this->hasMany('App\Models\Cartorio');
+	}
+
+	public function certidoes() {
+		return $this->belongsToMany('App\Models\Certidoe');
+	}
+
 }

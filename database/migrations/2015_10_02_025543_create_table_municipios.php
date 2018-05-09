@@ -20,7 +20,7 @@ class CreateTableMunicipios extends Migration {
             $table->timestamps();
         });
 
-        $this->setup();
+        #$this->setup();
 
     }
 
@@ -35,7 +35,7 @@ class CreateTableMunicipios extends Migration {
 
 
     private function setup() {
-        DB::raw("insert into municipios (codigoibge, nome, uf_id) values (1100148,'Nova Brasilândia DOeste',22);
+        DB::statement("insert into municipios (codigoibge, nome, uf_id) values (1100148,'Nova Brasilândia DOeste',22);
 insert into municipios (codigoibge, nome, uf_id) values (1100320,'São Miguel do Guaporé',22);
 insert into municipios (codigoibge, nome, uf_id) values (1100346,'Alvorada DOeste',22);
 insert into municipios (codigoibge, nome, uf_id) values (1101500,'Seringueiras',22);
@@ -2081,7 +2081,7 @@ insert into municipios (codigoibge, nome, uf_id) values (2929750,'Saubara',5);
 insert into municipios (codigoibge, nome, uf_id) values (2933174,'Varzedo',5);
 insert into municipios (codigoibge, nome, uf_id) values (2905701,'Camaçari',5);
 insert into municipios (codigoibge, nome, uf_id) values (2906501,'Candeias',5);
-insert into municipios (codigoibge, nome, uf_id) values (2910057,'Dias dÁvila',5);
+insert into municipios (codigoibge, nome, uf_id) values (2910057,'Dias d'Ávila',5);
 insert into municipios (codigoibge, nome, uf_id) values (2916104,'Itaparica',5);
 insert into municipios (codigoibge, nome, uf_id) values (2919207,'Lauro de Freitas',5);
 insert into municipios (codigoibge, nome, uf_id) values (2919926,'Madre de Deus',5);
