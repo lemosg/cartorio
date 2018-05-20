@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 
+use App\Lib\Deposit\Stripe\Stripe;
 
 use App\Models\Cartorio as CartorioModel;
 use App\Models\Certidoe as CertidoeModel;
@@ -71,15 +73,38 @@ class HomeController extends Controller {
 
 	public function form (CertidaoTypeModel $certidao, UFModel $uf, MunicipioModel $municipio, CartorioModel $cartorio) {
 
-		$cartorios = CartorioModel::where(['uf_id' => $uf->id, 'municipio_id' => $municipio->id])->whereHas('certidoes', function ($q) use ($certidao) {
-			$q->where('certidao_type_id', $certidao->id);	
-		})->get();
+		$user = Auth::user();
 
-		return view('home/cartorios', [
+		return view('home/form', [
 			'uf' => $uf,
 			'certidao' => $certidao,
 			'municipio' => $municipio,
-			'cartorios' => $cartorios
+			'cartorio' => $cartorio,
+			'user' => $user,
 		]);
+	}
+
+	public function request(Request $request, CertidaoTypeModel $certidao, UFModel $uf, MunicipioModel $municipio, CartorioModel $cartorio) {
+
+		$dados = $request->all();
+
+		$user = Auth::user();
+
+		dd($user->fisico);
+
+		$value = (!empty($user->juridico)) ? $certidao->value * 0.9 : $certidao->value;
+
+		$stripe = new Stripe($dados['stripeToken']);
+		if ($stripe->charge($value) === FALSE)
+			return $stripe->error->msg;
+
+		$mail_data = [];
+
+		foreach ($dados as $key => $value) {
+			if (!in_array($key, ['stripeToken', '_token']))
+				$mail_data[$key] = $value;
+		}
+
+		Mail::to('lemos.gabriel.dev@gmail.com')->send(new OrderShipped($mail_data));
 	}
 }

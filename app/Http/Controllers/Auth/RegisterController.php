@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Models\UserFisico;
+use App\Models\UserJuridico;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -60,12 +61,39 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+    protected function create(array $data) {
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        if ($data['tipo'] == 'Juridica') {
+            UserJuridico::create([
+                'user_id' => $user->id,
+                'cnpj' => $data['cnpj'],
+                'razao_social' => $data['razao_social'],
+                'nome_solicitante' => $data['nome_solicitante'],
+                'cpf_solicitante' => $data['cpf_solicitante'],
+                'rg_solicitante' => $data['rg_solicitante'],
+                'ddd' => $data['ddd'],
+                'telefone' => $data['telefone'],
+            ]);
+        } else {
+            UserFisico::create([
+                'user_id' => $user->id,
+                'cpf' => $data['cpf'],
+                'rg' => $data['rg'],
+                'ddd' => $data['ddd'],
+                'telefone' => $data['telefone'],
+            ]);
+        }
+
+        return $user;
+    }
+
+    public function postRegister(Request $request) {
+        
     }
 }

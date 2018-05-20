@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CertidaoType extends Model {
 	protected $fillable = [
 		'nome',
+		'value'
 	];
 
 	public function certidoes() {

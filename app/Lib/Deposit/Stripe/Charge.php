@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gestores\Deposit\Stripe;
+namespace App\Lib\Deposit\Stripe;
 
 # GESTORES
 use App\Gestores\Deposit\Error;

@@ -9,4 +9,8 @@ class Certidoe extends Model {
 		'cartorio_id',
 		'certidao_type_id',
 	];
+
+	public function type() {
+		return $this->hasOne('App\Models\CertidaoType');
+	}
 }

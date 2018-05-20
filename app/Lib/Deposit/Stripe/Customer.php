@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gestores\Deposit\Stripe;
+namespace App\Lib\Deposit\Stripe;
 
 # STRIPE
 use Stripe\Customer as StripeCustomer;
