@@ -90,8 +90,6 @@ class HomeController extends Controller {
 
 		$user = Auth::user();
 
-		dd($user->fisico);
-
 		$value = (!empty($user->juridico)) ? $certidao->value * 0.9 : $certidao->value;
 
 		$stripe = new Stripe($dados['stripeToken']);
@@ -105,6 +103,6 @@ class HomeController extends Controller {
 				$mail_data[$key] = $value;
 		}
 
-		Mail::to('lemos.gabriel.dev@gmail.com')->send(new OrderShipped($mail_data));
+		Mail::to('lemos.gabriel.dev@gmail.com')->send(new OrderShipped($mail_data, $user, $certidao, $cartorio));
 	}
 }
