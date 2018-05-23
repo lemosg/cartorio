@@ -23,8 +23,11 @@ class Order extends Mailable {
      *
      * @return void
      */
-    public function __construct($dados) {
+    public function __construct($dados, $user, $certidao, $cartorio) {
         $this->order = $dados;
+        $this->user = $user;
+        $this->certidao = $certidao;
+        $this->cartorio = $cartorio;
     }
 
     /**

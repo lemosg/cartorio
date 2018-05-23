@@ -1,20 +1,49 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.admin')
 
-        <title>Cartório</title>
+@section('content')
+    <div class="container">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <form action="{{route('admin.convert')}}" method="post" enctype="multipart/form-data">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
+
+        @if (\Session::has('error'))
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach(\Session::get('error') as $error)
+                        <li>
+                            @foreach($error as $e)
+                                {!! $e !!}
+                            @endforeach
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <h1>Atualizar dados de cartórios</h1>
+        <form action="{{route('admin.convert')}}" method="post" enctype="multipart/form-data" class="form-group">
             {{csrf_field()}}
-            <input type="file" name="csv" />
-            <input type="submit" value="Enviar Arquivo CSV" name="submit" />
+            <div class="form-group">
+                <input type="file" name="csv" class="form-control-file" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar Arquivo CSV" name="submit" class="btn btn-primary pull-right" />
+            </div>
         </form>
-    </body>
-</html>
+    </div>
+@endsection

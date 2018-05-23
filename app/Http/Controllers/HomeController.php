@@ -94,7 +94,7 @@ class HomeController extends Controller {
 
 		$stripe = new Stripe($dados['stripeToken']);
 		if ($stripe->charge($value) === FALSE)
-			return $stripe->error->msg;
+			return redirect()->back()->with('error', [$stripe->error->msg]);
 
 		$mail_data = [];
 
@@ -104,5 +104,7 @@ class HomeController extends Controller {
 		}
 
 		Mail::to('lemos.gabriel.dev@gmail.com')->send(new OrderShipped($mail_data, $user, $certidao, $cartorio));
+
+		return redirect()->back()->with('success', ['Seu pedido foi realizado com sucesso!']);
 	}
 }

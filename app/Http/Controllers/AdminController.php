@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use DB;
+use Validator;
 
 use Illuminate\Http\Request;
 
@@ -18,9 +21,16 @@ use App\Models\Municipio as MunicipioModel;
 
 class AdminController extends Controller {
 
+	public function __construct() {
+		if (Auth::id() != 1)
+			return redirect()->route('home');
+	}
+
 
 	public function convertTable (Request $request) {
 		ini_set('max_execution_time', 3000);
+
+		$this->validate($request, ['csv' => 'required|mimes:csv,txt']);
 
 		$file = fopen($request->file('csv'), 'r');
 
@@ -165,9 +175,11 @@ class AdminController extends Controller {
 			}			
 		}
 
-		dd($errors);
+		if (!empty($errors))
+			return redirect()->route('admin.panel')->with('error', $errors);
 
-		return redirect()->to_route('admin.panel')->with('message', 'Sucess');
+
+		return redirect()->route('admin.panel')->with('success', 'Arquivo atualizado com sucesso!');
 	}
 
 

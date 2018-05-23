@@ -46,13 +46,32 @@ class RegisterController extends Controller {
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
+    protected function validator(array $data) {
+
+        $config = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+            'ddd' => 'required|string|max:3',
+            'telefone' => 'required|string|max:10',
+        ];
+
+        if ($data['tipo'] == 'Juridica') {
+            $config = array_merge($config, [
+                'cnpj' => 'required|string|max:255|unique:user_juridicos',
+                'razao_social' => 'required|string',
+                'nome_solicitante' => 'required|string|max:255',
+                'cpf_solicitante' => 'required|string|max:255',
+                'rg_solicitante' => 'required|string|max:255',
+            ]);
+        } else {
+            $config = array_merge($config, [
+                'cpf' => 'required|string|max:255|unique:user_fisicos',
+                'rg' => 'required|string|max:255',
+            ]);
+        }
+
+        return Validator::make($data, $config);
     }
 
     /**

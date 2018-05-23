@@ -32,7 +32,7 @@ Route::group(['prefix' => 'certidao/{certidao}'], function() {
 
 
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::post('/convert-table', 'AdminController@convertTable')->name('admin.convert');
 
 	Route::get('/panel', 'AdminController@panel')->name('admin.panel');
