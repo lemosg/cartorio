@@ -1,7 +1,5 @@
 <div class="container">
-    <h2>Certidão de óbito</h2>
-
-    <form method="post">
+    
         <div class="form-group">
             <label for="nome_completo">Nome Completo</label>
             <input type="email" class="form-control" id="nome_completo" placeholder="Nome Completo" name="nome_completo">
