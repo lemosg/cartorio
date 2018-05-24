@@ -21,3 +21,22 @@ footer img {    max-width: 100%;
     vertical-align: top;}
 
     .copyright_wrap {background-color: #222222; text-align: center; padding:25px; margin-top:48px;}
+    
+
+
+.badge-certidoes {
+	display: inline-block;
+	background-color: transparent;
+	margin-right: 5px;
+	margin-top: 5px;
+	color: black;
+	border: 1px solid #00aee2;
+	font-size: 14px;
+	font-weight: normal;
+	border-radius: 5px;
+	padding: 3px 7px;
+}
+
+.badge-certidoes:hover {
+	color:black;
+}
