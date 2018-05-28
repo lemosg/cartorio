@@ -2,38 +2,55 @@
 
 @section('content')
     <div class="container">
-        <h1>Olá, {{$user->name}}</h1>
-        @if (true)
-            <h2>Certidão de óbito</h2>
-        @endif
-       <label for="value">Valor a ser depositado</label>
-       <h2>{{$certidao->value}}</h2>
+      <h1>Olá, {{$user->name}}</h1>
         
-        <form id="payment-form" class="form-horizontal" method="POST" action="{{ route('search.submit', ['certidao' => $certidao->id, 'uf' => $uf->id, 'municipio' => $municipio->id, 'cartorio' => $cartorio->id]) }}">
+      <h2>Certidão: {{$certidao->nome}}</h2>
+      <label>Valor a ser depositado</label>
+      <h2>{{$certidao->value}}</h2>
+        
+      <form id="payment-form" class="form-horizontal" method="POST" action="{{ route('search.submit', ['certidao' => $certidao->id, 'uf' => $uf->id, 'municipio' => $municipio->id, 'cartorio' => $cartorio->id]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="user-email" value="{{$user->email}}">
  
-            @if (true)
-                @include('home/obito')
+
+            @if ($certidao->id == 6)
+                  @include('home/certidoes/casamento')
+            @elseif ($certidao->id == 11)
+                  @include('home/certidoes/imoveis')
+            @elseif ($certidao->id == 12)
+                  @include('home/certidoes/documentos')
+            @elseif ($certidao->id == 10)
+                  @include('home/certidoes/protesto')
+            @elseif ($certidao->id == 7)
+                  @include('home/certidoes/obito')
+            @elseif ($certidao->id == 5)
+                  @include('home/certidoes/nascimento')
+            @else
+                  @include('home/certidoes/simplificada')
             @endif
 
-            <label for="value">Dados para pagamento</label>
-           <div class="row">
+            <div class="form-group">
+              <label>Arquivo para anexo</label>
+              <input type="file" name="file" class="form-control-file" />
+              <label>Descreva o tipo de arquivo enviado</label>
+              <input type="text" name="descricao_do_arquivo" class="form-control" />
+            </div>
+
+            <label>Dados para pagamento</label>
+            <div class="row">
                <div class="half">
                    <label for="value">Nome do titular</label>
                    <input type="text" class="form-control" placeholder="Nome conforme impresso no cartão" name="cardholder-name" >
+               </div>
+               <div class="half">
+                   <label for="card-expiry">Data de Validade</label>
+                   <div id="card-expiry"></div>
                </div>
            </div>
            <div class="row">
                <div class="half">
                    <label for="card-number">Número do Cartão</label>
                    <div id="card-number"></div>
-               </div>
-           </div>
-           <div class="row">
-               <div class="half">
-                   <label for="card-expiry">Data de Validade</label>
-                   <div id="card-expiry"></div>
                </div>
                <div class="half">
                    <label for="card-cvc">Código de Segurança</label>
@@ -45,7 +62,7 @@
            </div>
            <div class="form-group">
                <div class="col-md-8 col-md-offset-4">
-                   <button type="submit" class="btn btn-primary">
+                   <button type="submit" class="btn btn-success pull-right">
                        Enviar
                    </button>
                </div>

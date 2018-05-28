@@ -28,5 +28,4 @@
             <label for="numero_matricula">Número da Matrícula</label>
             <input type="text" class="form-control" id="numero_matricula" placeholder="Número da Matrícula" name="numero_matricula">
         </div>
-    </form>
 </div>

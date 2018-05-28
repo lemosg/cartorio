@@ -40,3 +40,13 @@ footer img {    max-width: 100%;
 .badge-certidoes:hover {
 	color:black;
 }
+
+.half {
+	width:49%;
+	float:left;
+	margin-right:1%;
+}
+.half + .half {
+	margin-right:0;
+	margin-left:1%;
+}

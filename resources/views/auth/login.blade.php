@@ -222,16 +222,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('input[type="radio"]').click(function() {
-            console.log('entrou');
-            $('.tipo_pessoa').each(function() {
-                $(this).css('display', 'none');
-            });
-            $('#'+$(this).val().toLowerCase()).css('display', 'block');
-        });
-    });
-</script>
 @endsection
