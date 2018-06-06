@@ -144,6 +144,11 @@
 
                                 <div class="col-md-6">
                                     <input id="cnpj" type="text" class="form-control" name="cnpj">
+                                    @if ($errors->has('cnpj'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cnpj') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -151,6 +156,11 @@
 
                                 <div class="col-md-6">
                                     <input id="razao_social" type="text" class="form-control" name="razao_social">
+                                    @if ($errors->has('razao_social'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('razao_social') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -158,6 +168,11 @@
 
                                 <div class="col-md-6">
                                     <input id="nome_solicitante" type="text" class="form-control" name="nome_solicitante">
+                                    @if ($errors->has('nome_solicitante'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('nome_solicitante') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -165,6 +180,11 @@
 
                                 <div class="col-md-6">
                                     <input id="cpf_solicitante" type="text" class="form-control" name="cpf_solicitante">
+                                    @if ($errors->has('cpf_solicitante'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cpf_solicitante') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -172,6 +192,11 @@
 
                                 <div class="col-md-6">
                                     <input id="rg_solicitante" type="text" class="form-control" name="rg_solicitante">
+                                    @if ($errors->has('rg_solicitante'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('rg_solicitante') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -182,6 +207,11 @@
 
                                 <div class="col-md-6">
                                     <input id="cpf" type="text" class="form-control" name="cpf">
+                                    @if ($errors->has('cpf'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('cpf') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
@@ -189,6 +219,11 @@
 
                                 <div class="col-md-6">
                                     <input id="rg" type="text" class="form-control" name="rg">
+                                    @if ($errors->has('rg'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('rg') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -198,6 +233,11 @@
 
                             <div class="col-md-6">
                                 <input id="ddd" type="text" class="form-control" name="ddd" required>
+                                @if ($errors->has('ddd'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('ddd') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -206,6 +246,11 @@
 
                             <div class="col-md-6">
                                 <input id="telefone" type="text" class="form-control" name="telefone" required>
+                                @if ($errors->has('telefone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

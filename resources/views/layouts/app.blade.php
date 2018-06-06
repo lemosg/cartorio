@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Cartorio') }}</title>
 
     <!-- Styles -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -22,6 +23,45 @@
                 </a>
             </div>
             <nav class="menu_main_nav_area">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="menu-item">
+                                <a href="http://cartorio24horas.net/secure/">Home</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://cartorio24horas.net/secure/institucional/">Institucional</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://cartorio24horas.net/secure/faq/">Faq</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://cartorio24horas.net/secure/blog/">Blog</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="http://cartorio24horas.net/secure/contato/">Contato</a>
+                            </li>
+                            <!-- Authentication Links -->
+                            @if (Auth::guest())
+                                <li class="menu-item"><a href="{{ route('register') }}">Cadastrar</a></li>
+                                <li class="menu-item"><a href="{{ route('login') }}">Entrar</a></li>
+                            @else
+                                <li class="menu-item">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            @endif  
+                        </ul>
+                    </li>
+                </ul>
                 <ul class="menu_main_nav">
                     <!-- Authentication Links -->
                     @if (Auth::guest())

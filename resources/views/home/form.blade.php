@@ -11,7 +11,7 @@
       <form id="payment-form" class="form-horizontal" method="POST" action="{{ route('search.submit', ['certidao' => $certidao->id, 'uf' => $uf->id, 'municipio' => $municipio->id, 'cartorio' => $cartorio->id]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="user-email" value="{{$user->email}}">
- 
+          <div class="container">
 
             @if ($certidao->id == 6)
                   @include('home/certidoes/casamento')
@@ -37,35 +37,40 @@
             </div>
 
             <label>Dados para pagamento</label>
-            <div class="row">
+            <div id="pagamento">
+              
+              <div class="row">
                <div class="half">
                    <label for="value">Nome do titular</label>
                    <input type="text" class="form-control" placeholder="Nome conforme impresso no cartão" name="cardholder-name" >
                </div>
                <div class="half">
                    <label for="card-expiry">Data de Validade</label>
-                   <div id="card-expiry"></div>
+                   <div id="card-expiry" class="form-control"></div>
                </div>
-           </div>
-           <div class="row">
-               <div class="half">
-                   <label for="card-number">Número do Cartão</label>
-                   <div id="card-number"></div>
+              </div>
+              <div class="row">
+                 <div class="half">
+                     <label for="card-number">Número do Cartão</label>
+                     <div id="card-number" class="form-control"></div>
+                 </div>
+                 <div class="half">
+                     <label for="card-cvc">Código de Segurança</label>
+                     <div id="card-cvc" class="form-control"></div>
+                 </div>
                </div>
-               <div class="half">
-                   <label for="card-cvc">Código de Segurança</label>
-                   <div id="card-cvc"></div>
+               <div class="row">
+                   <div id="card-errors" role="alert"></div>
                </div>
-           </div>
-           <div class="row">
-               <div id="card-errors" role="alert"></div>
-           </div>
-           <div class="form-group">
-               <div class="col-md-8 col-md-offset-4">
-                   <button type="submit" class="btn btn-success pull-right">
-                       Enviar
-                   </button>
-               </div>
+            </div>
+            <br/>
+             <div class="form-group">
+                 <div class="col-md-8 col-md-offset-4">
+                     <button type="submit" class="btn btn-success pull-right">
+                         Enviar
+                     </button>
+                 </div>
+             </div>
            </div>
         </form>
     </div>
