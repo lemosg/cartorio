@@ -15,6 +15,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+{{--
+
     <header>
         <div class="content_wrap clearfix">
             <div class="logo">
@@ -99,9 +101,11 @@
             </nav>
         </div>
     </header>
+ --}}
     <main id="app">
         @yield('content')
     </main>
+{{-- 
     <footer class="footer_wrap widget_area scheme_dark">
         <div class="content_wrap">
             <aside id="themerex_widget_socials-2" class="widget_number_1 column-1_4 widget widget_socials"> 
@@ -141,6 +145,7 @@
         </div>
     </footer>   <!-- /.footer_wrap -->
              
+ --}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
